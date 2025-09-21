@@ -1,65 +1,71 @@
-$(document).ready(function() {
-    $('a[href^="#"]').on('click', function(e) {
-        e.preventDefault();
-        const targetId = $(this).attr('href');
-        if (targetId === '#') return;
+document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+    const headerHeight = header?.offsetHeight ?? 0;
 
-        const targetElement = $(targetId);
-        if (targetElement.length) {
-            $('html, body').animate({
-                scrollTop: targetElement.offset().top - 80 // Adjust for header height
-            }, 500);
-        }
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', event => {
+            const targetId = link.getAttribute('href');
+            if (!targetId || targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (!targetElement) return;
+
+            event.preventDefault();
+            const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
+            window.scrollTo({
+                top: topOffset,
+                behavior: 'smooth'
+            });
+        });
     });
 
-    const header = $('header');
-    const headerHeight = header.outerHeight();
-
-    $(window).on('scroll', function() {
-        if ($(this).scrollTop() > headerHeight) {
-            header.css('box-shadow', '0 2px 10px rgba(0, 0, 0, 0.1)');
+    const updateHeaderShadow = () => {
+        if (window.scrollY > headerHeight) {
+            header?.classList.add('header-shadow');
         } else {
-            header.css('box-shadow', 'none');
+            header?.classList.remove('header-shadow');
         }
+    };
+
+    updateHeaderShadow();
+    window.addEventListener('scroll', updateHeaderShadow, { passive: true });
+
+    const packageCards = document.querySelectorAll('.package');
+    packageCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     });
 
-    const packageCards = $('.package');
-
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                $(entry.target).css({
-                    opacity: 1,
-                    transform: 'translateY(0)'
-                });
-            }
+            if (!entry.isIntersecting) return;
+            const { target } = entry;
+            target.style.opacity = '1';
+            target.style.transform = 'translateY(0)';
+            observer.unobserve(target);
         });
     }, { threshold: 0.1 });
 
-    packageCards.css({
-        opacity: 0,
-        transform: 'translateY(20px)',
-        transition: 'opacity 0.5s ease, transform 0.5s ease'
-    });
+    packageCards.forEach(card => observer.observe(card));
 
-    packageCards.each(function() {
-        observer.observe(this);
-    });
+    document.querySelectorAll('.buy-btn').forEach(button => {
+        button.addEventListener('click', event => {
+            event.preventDefault();
+            const card = button.closest('.package');
+            if (!card) return;
 
-    $('.buy-btn').on('click', function(e) {
-        e.preventDefault();
-        const packageTitle = $(this).parent().find('h3').text();
-        const packagePrice = $(this).parent().find('.price').text();
-
-        alert(`Added to cart: ${packageTitle} - ${packagePrice}`);
-    });
-
-    const loginForm = $('form');
-    if (loginForm.length) {
-        loginForm.on('submit', function(e) {
-            e.preventDefault();
-            // Logika login akan ditambahkan di sini
-            alert('Login functionality would be implemented here.');
+            const packageTitle = card.querySelector('h3')?.textContent ?? 'Package';
+            const packagePrice = card.querySelector('.price')?.textContent ?? '';
+            alert(`Added to cart: ${packageTitle.trim()} ${packagePrice.trim()}`);
         });
-    }
+    });
+
+    const loginForm = document.querySelector('form');
+    if (!loginForm) return;
+
+    loginForm.addEventListener('submit', event => {
+        event.preventDefault();
+        alert('Login functionality would be implemented here.');
+    });
 });
