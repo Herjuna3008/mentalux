@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/http.php';
 require_once __DIR__ . '/auth.php';
+
+handle_preflight_request(['POST']);
 
 ensure_session_started();
 

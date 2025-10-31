@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/http.php';
 require_once __DIR__ . '/config.php';
+
+handle_preflight_request(['POST']);
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ../signup.html');
