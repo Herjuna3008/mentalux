@@ -34,6 +34,9 @@ $mysqli->close();
                 <h1 class="card-title">Selamat datang di Mentalux!</h1>
                 <p class="card-text">Terima kasih telah bergabung sebagai pelanggan. Eksplor layanan dan edukasi kesehatan mental yang kami sediakan.</p>
                 <p class="mb-0">Tim kami siap membantu perjalanan kesehatan mental Anda.</p>
+                <a href="index.html" class="btn btn-outline-primary w-50">
+                    Back To Menu
+                </a>
             </div>
         </div>
     </div>

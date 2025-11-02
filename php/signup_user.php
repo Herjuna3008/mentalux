@@ -12,11 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+$username = isset($_POST['username']) ? trim((string) $_POST['username']) : '';
 $email = isset($_POST['email']) ? trim((string) $_POST['email']) : '';
 $password = $_POST['password'] ?? '';
 $confirmPassword = $_POST['confirm_password'] ?? '';
 
 $errors = [];
+
+if ($username === '') {
+    $errors[] = 'Username wajib diisi.';
+} elseif (strlen($username) < 3) {
+    $errors[] = 'Username minimal 3 karakter.';
+}
 
 if ($email === '') {
     $errors[] = 'Email wajib diisi.';
@@ -67,8 +74,8 @@ try {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $role = 'CUSTOMER';
 
-    $insert = $mysqli->prepare('INSERT INTO account (email, password, role) VALUES (?, ?, ?)');
-    $insert->bind_param('sss', $email, $hashedPassword, $role);
+    $insert = $mysqli->prepare('INSERT INTO account (username, email, password, role) VALUES (?, ?, ?, ?)');
+    $insert->bind_param('ssss', $username, $email, $hashedPassword, $role);
     $insert->execute();
     $insert->close();
 

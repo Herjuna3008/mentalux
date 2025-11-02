@@ -3,10 +3,10 @@
 
 declare(strict_types=1);
 
-const DB_HOST = 'united.jagoanhosting.com';
+const DB_HOST = 'localhost';
 const DB_NAME = 'supersay_mentalux';
-const DB_USER = 'supersay_admin';
-const DB_PASS = 'Herjuna_3008';
+const DB_USER = 'root';
+const DB_PASS = '';
 
 const AUTH_COOKIE_NAME = 'mentalux_auth';
 const AUTH_COOKIE_LIFETIME = 604800; // 7 hari dalam detik.
