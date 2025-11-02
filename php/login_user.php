@@ -60,6 +60,7 @@ if (!$user || !password_verify($password, $user['password'])) {
 
 start_user_session([
     'id' => (int) $user['id'],
+    'username' => $user['username'],
     'email' => $user['email'],
     'password' => $user['password'],
     'role' => $user['role'],
