@@ -47,7 +47,7 @@ if ($email === '' || $password === '') {
     render_login_error($mysqli, 'Email dan password wajib diisi.');
 }
 
-$statement = $mysqli->prepare('SELECT id, email, password, role FROM account WHERE email = ? LIMIT 1');
+$statement = $mysqli->prepare('SELECT id, username, email, password, role FROM account WHERE email = ? LIMIT 1');
 $statement->bind_param('s', $email);
 $statement->execute();
 $result = $statement->get_result();

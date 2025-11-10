@@ -13,7 +13,7 @@ try {
     exit;
 }
 
-ensure_authenticated($mysqli, ['PSYCHOLOGIST', 'ADMIN']);
+ensure_authenticated($mysqli, ['Psychologist', 'Admin']);
 
 $mysqli->close();
 ?>
@@ -34,6 +34,7 @@ $mysqli->close();
                 <h1 class="card-title">Halo, Psikolog Mentalux!</h1>
                 <p class="card-text">Kelola jadwal konsultasi, pantau perkembangan klien, dan bagikan materi edukasi dari sini.</p>
                 <p class="mb-0">Terima kasih telah mendukung kesehatan mental para pengguna kami.</p>
+                <a href="psychologist_upload.php" class="text-primary">Upload Sertifikat anda!!</a>
             </div>
         </div>
     </div>

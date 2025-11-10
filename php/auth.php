@@ -14,9 +14,9 @@ function ensure_session_started(): void
 function redirect_to_role(string $role, string $basePath = ''): void
 {
     $target = 'customer_dashboard.php';
-    if ($role === 'ADMIN') {
+    if ($role === 'Admin') {
         $target = 'admin_dashboard.php';
-    } elseif ($role === 'PSYCHOLOGIST') {
+    } elseif ($role === 'Psychologist') {
         $target = 'psychologist_dashboard.php';
     }
 
@@ -26,7 +26,7 @@ function redirect_to_role(string $role, string $basePath = ''): void
 
 function redirect_to_login(string $basePath = ''): void
 {
-    header('Location: ' . $basePath . 'Login.html');
+    header('Location: ' . $basePath . 'login.html');
     exit;
 }
 
@@ -113,11 +113,24 @@ function ensure_authenticated(mysqli $mysqli, array $allowedRoles = [], string $
         }
     }
 
+    // Kalau belum login sama sekali
     if (!isset($_SESSION['user_id'], $_SESSION['role'])) {
         redirect_to_login($basePath);
     }
 
+    // Kalau role tidak sesuai, baru redirect
     if ($allowedRoles !== [] && !in_array($_SESSION['role'], $allowedRoles, true)) {
-        redirect_to_role($_SESSION['role'], $basePath);
+        // Hindari redirect ke halaman yang sama (infinite loop)
+        $currentPage = basename($_SERVER['PHP_SELF']);
+        $targetPage = match ($_SESSION['role']) {
+            'Admin' => 'admin_dashboard.php',
+            'Psychologist' => 'psychologist_dashboard.php',
+            default => 'customer_dashboard.php',
+        };
+
+        // Cek biar gak redirect ke halaman yang sama
+        if ($currentPage !== $targetPage) {
+            redirect_to_role($_SESSION['role'], $basePath);
+        }
     }
 }
