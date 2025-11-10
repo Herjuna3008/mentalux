@@ -16,6 +16,7 @@ $username = isset($_POST['username']) ? trim((string) $_POST['username']) : '';
 $email = isset($_POST['email']) ? trim((string) $_POST['email']) : '';
 $password = $_POST['password'] ?? '';
 $confirmPassword = $_POST['confirm_password'] ?? '';
+$role = isset($_POST['role']) ? trim((string) $_POST['role']) : '';
 
 $errors = [];
 
@@ -72,7 +73,6 @@ try {
     $statement->close();
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $role = 'CUSTOMER';
 
     $insert = $mysqli->prepare('INSERT INTO account (username, email, password, role) VALUES (?, ?, ?, ?)');
     $insert->bind_param('ssss', $username, $email, $hashedPassword, $role);

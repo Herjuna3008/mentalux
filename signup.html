@@ -40,25 +40,37 @@
                         <h2 class="text-center text-primary mb-4">Please Sign Up to continue</h2>
                         <form method="POST" action="php/signup_user.php">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="username" name="username" placeholder="User Name" required>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="User Name" required>
                                 <label for="username">User Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                    required>
                                 <label for="email">Email</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required minlength="8" maxlength="64">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Password" required minlength="8" maxlength="64">
                                 <label for="password">Password</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="confirm-password" name="confirm_password" placeholder="Confirm Password" required minlength="8" maxlength="64">
+                                <input type="password" class="form-control" id="confirm-password"
+                                    name="confirm_password" placeholder="Confirm Password" required minlength="8"
+                                    maxlength="64">
                                 <label for="confirm-password">Confirm Password</label>
                             </div>
+                                <label for="role">Pilih Role:</label>
+                                <select name="role" required>
+                                    <option value="Customer">Customer</option>
+                                    <option value="Psychologist">Psychologist</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
                                 <label class="form-check-label" for="terms">
-                                    By creating account you agree with our <a href="#" class="text-primary">Terms and Conditions</a>
+                                    By creating account you agree with our <a href="#" class="text-primary">Terms and
+                                        Conditions</a>
                                 </label>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg w-100">SIGN UP</button>
