@@ -34,7 +34,7 @@
 <style>
     /* Atur tinggi logo biar pas di HP dan Laptop */
     .logo-nav {
-        height: 85px;  
+        height: 85px;   
         width: auto;   
         max-width: 100%;
     }
