@@ -33,7 +33,7 @@
         # Example: install JS dependencies from NPM
         # npm-install = "npm install";
         # Open editors for the following files by default, if they exist:
-        default.openFiles = [ "style.css" "main.js" "index.html" ];
+        default.openFiles = [ "public/css/style.css" "main.js" "index.html" ];
       };
       # Runs when the workspace is (re)started
       onStart = {

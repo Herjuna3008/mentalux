@@ -26,7 +26,7 @@ function redirect_to_role(string $role, string $basePath = ''): void
 
 function redirect_to_login(string $basePath = ''): void
 {
-    header('Location: ' . $basePath . 'login.html');
+    header('Location: ' . $basePath . 'login.php');
     exit;
 }
 

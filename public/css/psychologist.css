@@ -1,0 +1,125 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Warna ungu muda khusus untuk background kartu bagian bawah */
+.bg-card-purple {
+    background-color: #E0E0FC;
+}
+
+/* Garis bawah biru tebal pada judul */
+.custom-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    width: 100%;
+    height: 6px;
+    background-color: #007BFF;
+    /* Warna biru */
+    z-index: -1;
+}
+
+/* Tambahan CSS inline agar sesuai desain */
+.bg-card-purple {
+    background-color: #E0E0FC;
+}
+
+.custom-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    width: 100%;
+    height: 6px;
+    background-color: #007BFF;
+    z-index: -1;
+}
+
+/* 2. Vanilla CSS untuk styling khusus */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    /* Jarak agar tidak ketabrak navbar fixed */
+    padding-top: 100px;
+}
+
+/* Warna ungu muda khusus card */
+.bg-card-purple {
+    background-color: #E0E0FC;
+}
+
+/* Styling Gambar agar ukurannya seragam */
+.card-img-container {
+    height: 250px;
+    /* Setara h-64 di tailwind */
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.card-img-custom {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* Membuat card tinggi sama rata */
+.card {
+    border: 1px solid #f0f0f0;
+    border-radius: 1rem;
+    /* Rounded besar */
+    overflow: hidden;
+    transition: transform 0.3s;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Judul dengan garis bawah biru */
+.custom-underline {
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+    color: #000;
+}
+
+.custom-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    height: 8px;
+    background-color: #0d6efd;
+    /* Bootstrap primary blue */
+    z-index: -1;
+    opacity: 0.3;
+    /* Biar teks tetap terbaca jelas */
+}
+
+/* Breadcrumb */
+.breadcrumb-item a {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.breadcrumb-item a:hover {
+    color: #0d6efd;
+}

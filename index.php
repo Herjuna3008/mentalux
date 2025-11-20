@@ -6,31 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MentalUX - Psychological Services</title>
     <link href="bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="public/css/style.css" />
     <!-- Add jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
 </head>
 
 <body>
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <img src="../public/logo.png" alt="MentalUX Logo" />
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="Psychologist.html">Psychologist</a></li>
-                    <li><a href="education.html">Education</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <a href="login.html" class="login-btn">Log in</a>
-                <a href="#" class="get-started-btn">Get Started</a>
-            </div>
-        </div>
-    </header>
+    <?php include 'navbar.php'; ?>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -87,19 +70,6 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-column">
-                    <h4>MentalUX</h4>
-                    
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Copyright © 2025 MentalUX</p>
-                <p>All Rights Reserved | Terms and Conditions | Privacy Policy</p>
-            </div>
-        </div>
-    </footer>
+    <?php include 'footer.php'; ?>
 </body>
 </html>

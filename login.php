@@ -7,29 +7,12 @@
     <title>Login - Mentalux</title>
     <link href="bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 
 <body>
     <!-- Navbar -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <img src="public/logo.png" alt="MentalUX Logo" />
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="Psychologist.html">Psychologist</a></li>
-                    <li><a href="education.html">Education</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <a href="#" class="login-btn">Log in</a>
-                <a href="#" class="get-started-btn">Get Started</a>
-            </div>
-        </div>
-    </header>
+    <?php include 'navbar.php'; ?>
 
     <!-- Main Section -->
     <section class="bg-primary-subtle py-5 mt-5">
@@ -81,19 +64,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-column">
-                    <h4>MentalUX</h4>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Copyright © 2025 MentalUX</p>
-                <p>All Rights Reserved | Terms and Conditions | Privacy Policy</p>
-            </div>
-        </div>
-    </footer>
+    <?php include 'footer.php'; ?>
 
     <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>

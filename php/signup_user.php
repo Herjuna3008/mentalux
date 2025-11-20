@@ -66,7 +66,7 @@ try {
         $mysqli->close();
         echo '<h2>Registrasi gagal</h2>';
         echo '<p>Email sudah terdaftar. Silakan gunakan email lain atau login.</p>';
-        echo '<p><a href="../Login.html">Kembali ke halaman login</a></p>';
+        echo '<p><a href="../login.php">Kembali ke halaman login</a></p>';
         exit;
     }
 
@@ -82,7 +82,7 @@ try {
     $mysqli->close();
 
     echo '<h2>Registrasi berhasil!</h2>';
-    echo '<p>Akun Anda berhasil dibuat. Silakan <a href="../Login.html">login di sini</a>.</p>';
+    echo '<p>Akun Anda berhasil dibuat. Silakan <a href="../login.php">login di sini</a>.</p>';
 } catch (Throwable $exception) {
     if (isset($mysqli) && $mysqli instanceof mysqli) {
         $mysqli->close();

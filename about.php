@@ -5,29 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Mentalux</title>
     <link href="bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 
 <body>
     <!-- Navbar -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <img src="public/logo.png" alt="MentalUX Logo" />
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="Psychologist.html">Psychologist</a></li>
-                    <li><a href="education.html">Education</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <a href="Login.html" class="login-btn">Log in</a>
-                <a href="#" class="get-started-btn">Get Started</a>
-            </div>
-        </div>
-    </header>
+    <?php include 'navbar.php'; ?>
+    
     <!-- Main Section -->
     <section class="bg-primary-subtle py-5 mt-5">
         <div class="container">

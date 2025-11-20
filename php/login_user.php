@@ -23,7 +23,7 @@ function render_login_error(mysqli $mysqli, string $message): void
     $mysqli->close();
     echo '<h2>Login gagal</h2>';
     echo '<p>' . htmlspecialchars($message, ENT_QUOTES | ENT_HTML5, 'UTF-8') . '</p>';
-    echo '<p><a href="../Login.html">Coba lagi</a></p>';
+    echo '<p><a href="../login.php">Coba lagi</a></p>';
     exit;
 }
 
