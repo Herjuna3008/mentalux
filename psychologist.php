@@ -21,7 +21,7 @@
         <nav aria-label="breadcrumb" class="mb-3">
             <ol class="breadcrumb text-sm">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Psychological tests</li>
+                <li class="breadcrumb-item active" aria-current="page">Psychologist</li>
             </ol>
         </nav>
 

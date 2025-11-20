@@ -18,6 +18,12 @@
             <div class="row d-flex justify-content-center align-items-center text-center">
                 <div class="col-lg-8">
                     <br>
+                    <nav aria-label="breadcrumb" class="mb-3">
+                        <ol class="breadcrumb text-sm">
+                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Education</li>
+                        </ol>
+                    </nav>
                     <h1 class="text-primary mb-4">Education</h1>
                     <p class="lead mb-4">Mentalux juga menyediakan layanan edukasi kepada anda secara dasar melalui
                         dasar dasaran pada penyakit mental.</p>

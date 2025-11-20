@@ -11,12 +11,19 @@
 <body>
     <!-- Navbar -->
     <?php include 'navbar.php'; ?>
-    
+
     <!-- Main Section -->
     <section class="bg-primary-subtle py-5 mt-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8">
+                    <br>
+                    <nav aria-label="breadcrumb" class="mb-3">
+                        <ol class="breadcrumb text-sm">
+                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                        </ol>
+                    </nav>
                     <h1 class="display-4 fw-bold text-primary mb-4">About Us</h1>
                     <p class="lead mb-4">Mentalux adalah platform kesehatan mental yang dirancang untuk memberikan
                         dukungan dan sumber daya bagi individu yang mencari bantuan untuk masalah kesehatan mental

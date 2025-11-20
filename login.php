@@ -51,7 +51,7 @@
                             <p class="small mb-3">Don't have an Account? Create one!!</p>
                             <div class="row g-1 d-flex justify-content-center">
                                 <div class="w-100">
-                                    <a href="signup.html" class="btn btn-outline-primary w-100">
+                                    <a href="signup.php" class="btn btn-outline-primary w-100">
                                         Click Here to create an Account!!
                                     </a>
                                 </div>
