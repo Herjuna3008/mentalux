@@ -106,10 +106,8 @@ function start_user_session(array $user): void
 {
     ensure_session_started();
     $_SESSION['user_id'] = (int) $user['id'];
-    
-    // menyimpan username biar Navbar ada namanya
     $_SESSION['username'] = $user['username'] ?? 'User'; 
-    
+    $_SESSION['email'] = $user['email'];
     $_SESSION['role'] = $user['role'];
 }
 
