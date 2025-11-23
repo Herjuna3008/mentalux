@@ -7,6 +7,7 @@
     <link href="bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/about.css">
+    <link rel="icon" href="public/logo.png" type="image/x-icon">
 </head>
 
 <body>
