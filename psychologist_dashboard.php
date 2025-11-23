@@ -18,7 +18,7 @@ $mysqli->close();
 
 // Dummy Data
 $appointments = [
-    ['client' => 'Budi Santoso', 'time' => '10:00 AM', 'date' => 'Today', 'status' => 'Confirmed'],
+    ['client' => 'Anton Santoso', 'time' => '10:00 AM', 'date' => 'Today', 'status' => 'Confirmed'],
     ['client' => 'Siti Aminah', 'time' => '02:00 PM', 'date' => 'Today', 'status' => 'Pending'],
 ];
 ?>
