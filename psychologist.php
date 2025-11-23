@@ -171,8 +171,8 @@ if (isset($_GET['cari']) && !empty($_GET['cari'])) {
                                     <?php
                                     // Memotong teks jika terlalu panjang biar kartu rata
                                     $desc = $psy['desc'];
-                                    if (strlen($desc) > 90) {
-                                        echo substr($desc, 0, 90) . '...';
+                                    if (strlen($desc) > 150) {
+                                        echo substr($desc, 0, 150) . '...';
                                     } else {
                                         echo $desc;
                                     }
