@@ -19,10 +19,11 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>
-                Help a loved one understand a difficult situation,understand yourself better and becomehappie difficult
-                situation,understand yourself better and become happie
+            <h1>Help a loved one understand</h1>
+            <h1 class="typewriter">
+            a difficult situation & emotional support. 
             </h1>
+        </div>
             <span class="free-tag">Get Started</span>
     </section>
 

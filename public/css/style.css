@@ -88,16 +88,65 @@ nav ul li a:hover {
 
 /* Hero Section */
 .hero {
-    padding: 150px 0 100px;
-    background-color: #f8f9fa;
+    padding: 150px 0 150px;
+    background-color: #4a6cf7;
     text-align: center;
 }
 
 .hero h1 {
+    font-weight: bold;
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #222;
+    color: white;
 }
+
+/* Cursor */
+.cursor{
+    position: relative;
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 30px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Cursor */
+.cursor{
+    position: relative;
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 30px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.typewriter {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #fff; /* cursor */
+  animation: typing 5s steps(50, end) infinite,
+             blinkingCursor 500ms step-end infinite;
+}
+
+@keyframes typing {
+  0%   { width: 0; }
+  50%  { width: 100%; }
+  100% { width: 0; }
+}
+
+@keyframes blinkingCursor {
+  0%,100% { border-right-color: rgba(255,255,255,.75); }
+  50%     { border-right-color: transparent; }
+}
+
 
 .hero p {
     font-size: 1.1rem;
@@ -107,9 +156,9 @@ nav ul li a:hover {
 }
 
 .free-tag {
-    background-color: #4a6cf7;
+    background-color: #3a5cd8;
     color: white;
-    padding: 5px 15px;
+    padding: 10px 25px;
     border-radius: 20px;
     display: inline-block;
     margin-bottom: 20px;
