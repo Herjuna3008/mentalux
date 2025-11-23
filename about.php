@@ -84,40 +84,46 @@
     <section class="py-5 bg-light">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Meet The Minds</h2>
-                <p class="text-muted">Orang-orang di balik layar MentalUX.</p>
+                <h2 class="fw-bold">Dampak Nyata Kami</h2>
+                <p class="text-muted">Dengarkan kisah mereka yang telah memulai perjalanan pemulihan bersama MentalUX.</p>
             </div>
 
             <div class="row g-4 justify-content-center">
-                <div class="col-md-3 col-sm-6">
-                    <div class="card border-0 shadow-sm text-center py-4 h-100 card-hover">
+
+                <div class="col-lg-5 col-md-6">
+                    <div class="card border-0 shadow-lg p-4 h-100">
                         <div class="card-body">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" class="team-img" alt="CEO">
-                            <h5 class="fw-bold mb-1">Adrian Pratama</h5>
-                            <small class="text-primary fw-bold">Founder & CEO</small>
-                            <p class="text-muted small mt-3">"Visi saya adalah membuat konsultasi psikologi semudah memesan ojek online."</p>
+                            <i class="fas fa-quote-left fa-2x text-primary mb-3 opacity-50"></i>
+                            <p class="lead small fst-italic text-secondary">
+                                "Saya merasa beban pikiran saya berkurang drastis setelah 3 sesi. Psikolognya sangat profesional dan tempatnya terasa aman untuk bercerita tanpa takut dihakimi."
+                            </p>
+                            <hr>
+                            <div class="d-flex align-items-center">
+                                <img src="https://ui-avatars.com/api/?name=Ahmad+F&background=ced4da&color=495057&size=60" class="rounded-circle me-3" alt="Client 1">
+                                <div>
+                                    <h6 class="fw-bold mb-0">Kipli</h6>
+                                    <small class="text-primary">User sejak 2025</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
-                    <div class="card border-0 shadow-sm text-center py-4 h-100 card-hover">
+                <div class="col-lg-5 col-md-6">
+                    <div class="card border-0 shadow-lg p-4 h-100">
                         <div class="card-body">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" class="team-img" alt="Lead Psychologist">
-                            <h5 class="fw-bold mb-1">Dr. Sarah Larasati</h5>
-                            <small class="text-primary fw-bold">Lead Psychologist</small>
-                            <p class="text-muted small mt-3">Psikolog Klinis dengan pengalaman 10 tahun di bidang trauma healing.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card border-0 shadow-sm text-center py-4 h-100 card-hover">
-                        <div class="card-body">
-                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop" class="team-img" alt="CTO">
-                            <h5 class="fw-bold mb-1">Kevin Sanjaya</h5>
-                            <small class="text-primary fw-bold">Head of Tech</small>
-                            <p class="text-muted small mt-3">Memastikan platform berjalan lancar dan data pengguna aman 24/7.</p>
+                            <i class="fas fa-quote-left fa-2x text-primary mb-3 opacity-50"></i>
+                            <p class="lead small fst-italic text-secondary">
+                                "Fitur edukasinya sangat membantu. Saya jadi tahu kalau yang saya alami itu bukan keanehan, tapi gejala yang bisa diatasi. Terima kasih, MentalUX."
+                            </p>
+                            <hr>
+                            <div class="d-flex align-items-center">
+                                <img src="https://ui-avatars.com/api/?name=Dewi+S&background=ced4da&color=495057&size=60" class="rounded-circle me-3" alt="Client 2">
+                                <div>
+                                    <h6 class="fw-bold mb-0">Dewi S.</h6>
+                                    <small class="text-primary">Mendapatkan Insight</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
