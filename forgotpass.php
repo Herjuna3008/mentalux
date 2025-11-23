@@ -38,7 +38,7 @@
     <?php include 'footer.php'; ?>
     
     <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="public/js/script.js"></script>
 </body>
 
 </html>

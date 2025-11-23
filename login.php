@@ -8,6 +8,7 @@
     <link href="bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -26,9 +27,15 @@
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                                 <label for="email">Email</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                            <div class="form-floating mb-3 position-relative">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Password" required style="padding-right: 50px;">
                                 <label for="password">Password</label>
+
+                                <span class="position-absolute top-50 end-0 translate-middle-y me-3"
+                                    id="togglePassword" style="cursor: pointer; z-index: 10;">
+                                    <i class="fas fa-eye text-secondary"></i>
+                                </span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="form-check">
@@ -67,7 +74,22 @@
     <?php include 'footer.php'; ?>
 
     <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="public/js/script.js"></script>
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        const icon = togglePassword.querySelector('i');
+
+        togglePassword.addEventListener('click', function() {
+            // Cek tipe password atau text
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+
+            // Ganti ikon
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </body>
 
 </html>

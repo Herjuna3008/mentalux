@@ -13,10 +13,13 @@ function ensure_session_started(): void
 
 function redirect_to_role(string $role, string $basePath = ''): void
 {
-    $target = 'customer_dashboard.php';
-    if ($role === 'Admin') {
+    $role = strtolower($role); 
+
+    $target = 'customer_dashboard.php'; // Default ke customer
+    
+    if ($role === 'admin') {
         $target = 'admin_dashboard.php';
-    } elseif ($role === 'Psychologist') {
+    } elseif ($role === 'psychologist') {
         $target = 'psychologist_dashboard.php';
     }
 
@@ -32,7 +35,9 @@ function redirect_to_login(string $basePath = ''): void
 
 function clear_auth_cookie(): void
 {
-    setcookie(AUTH_COOKIE_NAME, '', time() - 3600, '/', '', false, true);
+    if (defined('AUTH_COOKIE_NAME')) {
+        setcookie(AUTH_COOKIE_NAME, '', time() - 3600, '/', '', false, true);
+    }
 }
 
 function set_remember_me_cookie(int $userId, string $passwordHash): void
@@ -69,7 +74,8 @@ function get_user_from_cookie(mysqli $mysqli): ?array
 
     $userIdInt = (int) $userId;
 
-    $statement = $mysqli->prepare('SELECT id, email, password, role FROM account WHERE id = ? LIMIT 1');
+    // mengambil username dari database untuk session
+    $statement = $mysqli->prepare('SELECT id, username, email, password, role FROM account WHERE id = ? LIMIT 1');
     $statement->bind_param('i', $userIdInt);
     $statement->execute();
     $result = $statement->get_result();
@@ -89,6 +95,7 @@ function get_user_from_cookie(mysqli $mysqli): ?array
 
     return [
         'id' => (int) $user['id'],
+        'username' => $user['username'],
         'email' => $user['email'],
         'password' => $user['password'],
         'role' => $user['role'],
@@ -99,6 +106,10 @@ function start_user_session(array $user): void
 {
     ensure_session_started();
     $_SESSION['user_id'] = (int) $user['id'];
+    
+    // menyimpan username biar Navbar ada namanya
+    $_SESSION['username'] = $user['username'] ?? 'User'; 
+    
     $_SESSION['role'] = $user['role'];
 }
 
@@ -118,19 +129,27 @@ function ensure_authenticated(mysqli $mysqli, array $allowedRoles = [], string $
         redirect_to_login($basePath);
     }
 
+    // Normalisasi role session ke huruf kecil
+    $currentRole = strtolower($_SESSION['role']); 
+    
+    // Normalisasi allowedRoles ke huruf kecil semua
+    $allowedRolesLower = array_map('strtolower', $allowedRoles);
+
     // Kalau role tidak sesuai, baru redirect
-    if ($allowedRoles !== [] && !in_array($_SESSION['role'], $allowedRoles, true)) {
-        // Hindari redirect ke halaman yang sama (infinite loop)
+    if ($allowedRolesLower !== [] && !in_array($currentRole, $allowedRolesLower, true)) {
+        
         $currentPage = basename($_SERVER['PHP_SELF']);
-        $targetPage = match ($_SESSION['role']) {
+        
+        // Cek arah tujuan berdasarkan role (Case Insensitive)
+        $targetPage = match ($currentRole) {
             'Admin' => 'admin_dashboard.php',
             'Psychologist' => 'psychologist_dashboard.php',
             default => 'customer_dashboard.php',
         };
 
-        // Cek biar gak redirect ke halaman yang sama
+        // Cek biar gak redirect ke halaman yang sama (Infinite Loop)
         if ($currentPage !== $targetPage) {
-            redirect_to_role($_SESSION['role'], $basePath);
+            redirect_to_role($currentRole, $basePath);
         }
     }
 }

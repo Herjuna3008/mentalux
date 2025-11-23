@@ -27,11 +27,13 @@ function render_login_error(mysqli $mysqli, string $message): void
     exit;
 }
 
-$userFromCookie = get_user_from_cookie($mysqli);
-if ($userFromCookie !== null) {
-    start_user_session($userFromCookie);
-    $mysqli->close();
-    redirect_to_role($userFromCookie['role'], '../');
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $userFromCookie = get_user_from_cookie($mysqli);
+    if ($userFromCookie !== null) {
+        start_user_session($userFromCookie);
+        $mysqli->close();
+        redirect_to_role($userFromCookie['role'], '../');
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

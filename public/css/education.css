@@ -1,0 +1,52 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Jarak atas agar tidak ketutupan navbar fixed */
+    padding-top: 100px;
+}
+
+.video-container {
+    max-width: 800px;
+    /* Batasi lebar video agar tidak terlalu besar di layar lebar */
+    margin: 0 auto;
+}
+
+.hero-education {
+    background: linear-gradient(180deg, #ebf2ff 0%, #ffffff 100%);
+    padding-top: 120px;
+    /* Jarak dari navbar fixed */
+    padding-bottom: 60px;
+}
+
+.topic-badge {
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: 1px solid #dee2e6;
+    background: white;
+    color: #555;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+}
+
+.topic-badge:hover,
+.topic-badge.active {
+    background-color: var(--primary-color, #4a6cf7);
+    color: white;
+    border-color: var(--primary-color, #4a6cf7);
+}
+
+.card-hover {
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.video-wrapper iframe {
+    border-radius: 15px;
+}

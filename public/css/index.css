@@ -1,0 +1,56 @@
+/* Tambahan CSS Inline sedikit untuk mempercantik demo ini */
+.hero {
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    /* Warna biru gradasi */
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 3rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.card-price {
+    transition: transform 0.3s;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card-price:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.price-tag {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #224abe;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.feature-list li {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.feature-list i {
+    color: #28a745;
+    /* Warna centang hijau */
+    margin-right: 10px;
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    margin: 0 10px;
+    color: #224abe;
+    text-decoration: none;
+}
