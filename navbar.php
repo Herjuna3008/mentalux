@@ -1,7 +1,7 @@
 <?php
 // Pastikan session dimulai agar bisa membaca data user
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    @session_start();
 }
 ?>
 
