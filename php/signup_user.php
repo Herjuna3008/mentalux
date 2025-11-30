@@ -49,7 +49,7 @@ if ($errors !== []) {
         echo '<li>' . htmlspecialchars($error, ENT_QUOTES | ENT_HTML5, 'UTF-8') . '</li>';
     }
     echo '</ul>';
-    echo '<p><a href="../signup.html">Kembali ke halaman signup</a></p>';
+    echo '<p><a href="../signup.php">Kembali ke halaman signup</a></p>';
     exit;
 }
 
