@@ -95,7 +95,7 @@
     </div>
 
     <script>
-        // --- 1. LOGIKA GANTI TAB (INI YANG BIKIN PINDAH) ---
+        // LOGIKA GANTI TAB Qris ke Payment
         function switchTab(tab) {
             // Ambil elemen
             const btnQris = document.getElementById('tab-qris');
@@ -127,7 +127,7 @@
             }
         }
 
-        // --- 2. TIMER ---
+        // Timer
         function startTimer(duration, display) {
             var timer = duration, minutes, seconds;
             setInterval(function () {
@@ -144,7 +144,7 @@
             if(display) startTimer(60 * 15, display);
         };
 
-        // --- 3. COPY FUNCTION ---
+        // COPY FUNCTION
         function copyPrice() {
             var copyText = document.getElementById("priceText").innerText;
             navigator.clipboard.writeText(copyText).then(() => alert("Nominal disalin!"));
