@@ -1,3 +1,7 @@
+<title>@yield('title', 'MentalUX - Konsultasi Kesehatan Mental Online')</title>
+<meta name="description" content="@yield('description', 'Layanan konsultasi kesehatan mental online.')">
+<meta name="keywords" content="@yield('keywords', 'kesehatan mental, psikolog online, konsultasi psikologi')">
+
 <?php
 // Pastikan session dimulai agar bisa membaca data user
 if (session_status() === PHP_SESSION_NONE) {

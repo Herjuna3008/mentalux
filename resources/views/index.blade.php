@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+@section('title', 'MentalUX - Konsultasi Kesehatan Mental Online')
+@section('description', 'Layanan konsultasi kesehatan mental online')
+@section('keywords', 'kesehatan mental, psikolog online, konsultasi psikologi')
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
