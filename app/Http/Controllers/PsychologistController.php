@@ -26,7 +26,7 @@ class PsychologistController extends Controller
     // Proses Upload (Pengganti if ($_SERVER['REQUEST_METHOD'] === 'POST'))
     public function handleUpload(Request $request)
     {
-        // 1. Validasi File (Max 10 MB, Tipe PDF)
+        // Validasi File (Max 10 MB, Tipe PDF)
         $request->validate([
             'certificate' => 'required|file|mimes:pdf|max:10240', // Max 10MB
         ], [
@@ -50,11 +50,11 @@ class PsychologistController extends Controller
             File::makeDirectory($uploadPath, 0775, true, true);
         }
 
-        // 2. Simpan File ke Server
+        // Simpan File ke Server
         try {
             $file->move($uploadPath, $newFileName);
 
-            // 3. Simpan data ke Database (Gunakan DB Facade untuk SQL raw)
+            // Simpan data ke Database
             DB::insert('
                 INSERT INTO psychologist_certificates (psychologist_id, certificate_name, certificate_path)
                 VALUES (?, ?, ?)

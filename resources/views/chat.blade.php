@@ -69,7 +69,7 @@
         function sendMessage() {
             const text = messageInput.value;
 
-            if (text.trim() === "") return; // Jangan kirim kalau kosong
+            if (text.trim() === "") return; // Jangan kirim pesan kalau kosong
 
             // Munculkan Chat (User)
             addMessage(text, 'out');
