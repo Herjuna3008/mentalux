@@ -34,7 +34,7 @@ $psychologists = [
         "name" => "Mila Rahmawati M.Psi",
         "role" => "Psikolog Klinis Dewasa",
         "specialist" => "Family & Marriage",
-        "image" => "img/psikolog/drMila.jpg", 
+        "image" => "img/psikolog/drMila.jpg",
         "desc" => "Berpengalaman 13 tahun menangani masalah rumah tangga, pasangan, dan kecemasan pada orang dewasa.",
         "session" => "2 Hours",
         "price" => "Rp 200.000"
@@ -43,7 +43,7 @@ $psychologists = [
         "name" => "Munazilah S.Psi, M.Psi",
         "role" => "Psikolog Klinis",
         "specialist" => "Self Development",
-        "image" => "img/psikolog/drMunazilah.jpg", 
+        "image" => "img/psikolog/drMunazilah.jpg",
         "desc" => "Memiliki pengalaman 6 tahun membantu individu menemukan potensi terbaik dan mengatasi hambatan mental.",
         "session" => "2 Hours",
         "price" => "Rp 200.000"
@@ -52,7 +52,7 @@ $psychologists = [
         "name" => "Ayu Hidayati M.Psi",
         "role" => "Psikolog Klinis",
         "specialist" => "Stress & Burnout",
-        "image" => "img/psikolog/drAyu.jpg", 
+        "image" => "img/psikolog/drAyu.jpg",
         "desc" => "Ahli dalam manajemen stres pekerjaan, burnout, dan keseimbangan hidup (work-life balance).",
         "session" => "2 Hours",
         "price" => "Rp 200.000"
@@ -186,7 +186,8 @@ if (isset($_GET['cari']) && !empty($_GET['cari'])) {
                                         <div class="price-tag"><?php echo $psy['price']; ?></div>
                                         <small class="text-muted"><i class="far fa-clock me-1"></i> <?php echo $psy['session']; ?></small>
                                     </div>
-                                    <a href="#" class="btn btn-primary rounded-pill px-4 fw-bold btn-sm">
+                                    <a href="{{ url('/booking/' . $psy['name']) }}"
+                                        class="btn btn-primary rounded-pill px-4 fw-bold btn-sm">
                                         Book Now
                                     </a>
                                 </div>

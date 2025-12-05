@@ -1,0 +1,146 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #EFEFFD;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content-wrapper {
+    padding-top: 120px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+}
+
+.payment-card {
+    background: linear-gradient(135deg, #92A6BE 0%, #7A8FA8 100%);
+    border-radius: 20px;
+    padding: 25px;
+    max-width: 450px;
+    margin: 0 auto;
+    color: white;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Navigasi Tab */
+.nav-pills-custom {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px;
+    border-radius: 12px;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.nav-link-custom {
+    flex: 1;
+    text-align: center;
+    color: #ddd;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+/* Class Active untuk Tab */
+.nav-link-custom.active {
+    background: white;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Area Putih (QRIS & Bank) */
+.white-area {
+    background: white;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    min-height: 300px;
+    /* Biar tinggi ga anjlok pas ganti tab */
+}
+
+/* Khusus QRIS */
+.qris-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.qr-img {
+    width: 180px;
+    height: 180px;
+    display: block;
+    margin: 15px auto;
+    border: 1px dashed #ccc;
+    padding: 5px;
+}
+
+/* Khusus Bank */
+.bank-logo {
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.rek-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4B4DED;
+    letter-spacing: 1px;
+}
+
+.timer-badge {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.btn-copy {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-copy:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.btn-confirm {
+    background: #4B4DED;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    border: none;
+}
+
+.btn-confirm:hover {
+    background: #3a3ccf;
+    color: white;
+}
+
+/* Utility buat hide elemen */
+.d-none {
+    display: none !important;
+}

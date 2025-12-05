@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PsychologistController;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +85,11 @@ Route::get('/dashboard/psychologist/upload', [PsychologistController::class, 'sh
 Route::post('/dashboard/psychologist/upload', [PsychologistController::class, 'handleUpload'])
     ->middleware(['auth']) // Tambahkan middleware auth
     ->name('psychologist.upload.post');
+
+Route::get('/booking/{psikolog}', [BookingController::class, 'show']);
+Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
+
+// Route untuk menampilkan halaman Payment QRIS
+Route::get('/payment', [BookingController::class, 'payment']);
+
+Route::get('/chat', [BookingController::class, 'chat'])->name('chat');
