@@ -7,7 +7,7 @@ $psychologists = [
         "name" => "Dr. Dicky Oktrianda",
         "role" => "Dokter Jiwa (Psychiatrist)",
         "specialist" => "Medical Psychiatry",
-        "image" => "img/psikolog/drDicky.png", // Sudah bener (tanpa public/)
+        "image" => "img/psikolog/drDicky.png", 
         "desc" => "Seorang dokter yang memfokuskan keahliannya pada bidang kesehatan jiwa dan penanganan kondisi psikis secara medis.",
         "session" => "2 Hours",
         "price" => "Rp 200.000"
@@ -86,17 +86,13 @@ $psychologists = [
     ]
 ];
 
-// SEARCH
-$keyword = ""; // Default kosong
-$tampil_data = $psychologists; // Default tampilkan semua
+// SEARCH LOGIC
+$keyword = ""; 
+$tampil_data = $psychologists; 
 
-// Cek apakah user lagi nyari sesuatu?
 if (isset($_GET['cari']) && !empty($_GET['cari'])) {
     $keyword = $_GET['cari'];
-
-    // Filter array berdasarkan Nama ATAU Spesialisasi
     $tampil_data = array_filter($psychologists, function ($item) use ($keyword) {
-        // stripos = cari teks tanpa peduli huruf besar/kecil
         return stripos($item['name'], $keyword) !== false ||
             stripos($item['specialist'], $keyword) !== false ||
             stripos($item['role'], $keyword) !== false;
@@ -140,7 +136,7 @@ if (isset($_GET['cari']) && !empty($_GET['cari'])) {
                     <form action="" method="GET" class="position-relative">
                         <input type="text" name="cari" class="form-control search-bar"
                             placeholder="Cari nama psikolog (contoh: Dicky)..."
-                            value="<?php echo htmlspecialchars($keyword); ?>"> <button type="submit" class="btn btn-primary rounded-circle position-absolute top-50 end-0 translate-middle-y me-2" style="width: 40px; height: 40px;">
+                            value="{{ $keyword }}"> <button type="submit" class="btn btn-primary rounded-circle position-absolute top-50 end-0 translate-middle-y me-2" style="width: 40px; height: 40px;">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -162,35 +158,36 @@ if (isset($_GET['cari']) && !empty($_GET['cari'])) {
                             </div>
 
                             <div class="card-body p-4">
-                                <span class="badge-spec"><?php echo $psy['specialist']; ?></span>
+                                <span class="badge-spec">{{ $psy['specialist'] }}</span>
 
-                                <h5 class="fw-bold mb-1 text-dark"><?php echo $psy['name']; ?></h5>
-                                <p class="text-muted small mb-3"><?php echo $psy['role']; ?></p>
+                                <h5 class="fw-bold mb-1 text-dark">{{ $psy['name'] }}</h5>
+                                <p class="text-muted small mb-3">{{ $psy['role'] }}</p>
 
                                 <p class="text-secondary small mb-4" style="min-height: 60px;">
-                                    <?php
-                                    // Memotong teks jika terlalu panjang biar kartu rata
-                                    $desc = $psy['desc'];
-                                    if (strlen($desc) > 150) {
-                                        echo substr($desc, 0, 150) . '...';
-                                    } else {
-                                        echo $desc;
-                                    }
-                                    ?>
-                                </p>
+                                    {{ Str::limit($psy['desc'], 150) }} </p>
 
                                 <hr class="border-light">
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <div class="price-tag"><?php echo $psy['price']; ?></div>
-                                        <small class="text-muted"><i class="far fa-clock me-1"></i> <?php echo $psy['session']; ?></small>
+                                        <div class="price-tag">{{ $psy['price'] }}</div>
+                                        <small class="text-muted"><i class="far fa-clock me-1"></i> {{ $psy['session'] }}</small>
                                     </div>
-                                    <a href="{{ url('/booking/' . $psy['name']) }}"
-                                        class="btn btn-primary rounded-pill px-4 fw-bold btn-sm">
-                                        Book Now
-                                    </a>
-                                </div>
+                                    
+                                    @auth
+                                        <a href="{{ url('/booking/' . $psy['name']) }}"
+                                            class="btn btn-primary rounded-pill px-4 fw-bold btn-sm">
+                                            Book Now
+                                        </a>
+                                    @else
+                                        <button type="button" 
+                                            class="btn btn-primary rounded-pill px-4 fw-bold btn-sm"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#loginModal">
+                                            Book Now
+                                        </button>
+                                    @endauth
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -202,6 +199,41 @@ if (isset($_GET['cari']) && !empty($_GET['cari'])) {
 
     @include('footer')
 
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <span class="bg-warning bg-opacity-10 text-warning p-3 rounded-circle d-inline-block">
+                            <i class="fas fa-lock fa-2x"></i> </span>
+                    </div>
+
+                    <h4 class="fw-bold mb-2">Akses Terbatas</h4>
+                    <p class="text-muted mb-4">
+                        Maaf, Anda harus login terlebih dahulu untuk melakukan booking psikolog.
+                    </p>
+
+                    <div class="d-grid gap-2">
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-lg">
+                            Login Sekarang
+                        </a>
+                        
+                        <div class="d-flex justify-content-center gap-2 mt-2">
+                            <button type="button" class="btn btn-link text-decoration-none text-muted" data-bs-dismiss="modal">
+                                Nanti Saja
+                            </button>
+                            <span class="text-muted align-self-center">|</span>
+                            <a href="{{ route('signup') }}" class="btn btn-link text-decoration-none fw-bold">
+                                Buat Akun Baru
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

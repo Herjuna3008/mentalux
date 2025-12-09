@@ -87,13 +87,19 @@ Route::post('/dashboard/psychologist/upload', [PsychologistController::class, 'h
     ->middleware(['auth']) // Tambahkan middleware auth
     ->name('psychologist.upload.post');
 
-Route::get('/booking/{psikolog}', [BookingController::class, 'show']);
-Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
+Route::middleware(['auth'])->group(function () {
+    
+    // Booking
+    Route::get('/booking/{psikolog}', [BookingController::class, 'show']);
+    Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
+    
+    // Payment
+    Route::get('/payment', [BookingController::class, 'payment']);
+    
+    // Chat
+    Route::get('/chat', [BookingController::class, 'chat'])->name('chat');
 
-// Route untuk menampilkan halaman Payment QRIS
-Route::get('/payment', [BookingController::class, 'payment']);
-
-Route::get('/chat', [BookingController::class, 'chat'])->name('chat');
+});
 
 Route::get('/signup', [RegisterController::class, 'index'])->name('signup');
 Route::post('/signup', [RegisterController::class, 'store'])->name('signup.store');
