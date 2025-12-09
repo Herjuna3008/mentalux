@@ -65,7 +65,7 @@ $appointments = [
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-primary btn-sm rounded-pill px-3">Join Call</button>
+                            <button class="btn btn-primary btn-sm rounded-pill px-3">Join Chat</button>
                             <button class="btn btn-outline-secondary btn-sm rounded-circle"><i class="fas fa-file-medical"></i></button>
                         </div>
                     </div>
@@ -77,13 +77,6 @@ $appointments = [
             <div class="col-lg-4">
                 <h4 class="fw-bold mb-4">Quick Menu</h4>
                 <div class="list-group shadow-sm rounded-3 border-0">
-                    <a href="#" class="list-group-item list-group-item-action py-3 border-0">
-                        <i class="fas fa-user-clock me-2 text-primary"></i> Availability Settings
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action py-3 border-0">
-                        <i class="fas fa-history me-2 text-success"></i> Consultation History
-                    </a>
-
                     <a href="{{ route('psychologist.upload') }}" class="list-group-item list-group-item-action py-3 border-0">
                         <i class="fas fa-certificate me-2 text-warning"></i> Upload Sertifikat
                     </a>

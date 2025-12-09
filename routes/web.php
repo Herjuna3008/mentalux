@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PsychologistController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,3 +94,6 @@ Route::post('/booking/store', [BookingController::class, 'store'])->name('bookin
 Route::get('/payment', [BookingController::class, 'payment']);
 
 Route::get('/chat', [BookingController::class, 'chat'])->name('chat');
+
+Route::get('/signup', [RegisterController::class, 'index'])->name('signup');
+Route::post('/signup', [RegisterController::class, 'store'])->name('signup.store');
