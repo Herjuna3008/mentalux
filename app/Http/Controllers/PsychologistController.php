@@ -4,67 +4,142 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB; // Untuk Raw Query / Query Builder
-use Illuminate\Support\Facades\File; // Untuk cek/buat folder
+use Illuminate\Support\Facades\DB;   // Untuk Query Builder / Raw
+use Illuminate\Support\Facades\File; // Untuk File Handling
+use App\Models\Psychologist;         // <--- WAJIB TAMBAH INI (Panggil Model)
 
 class PsychologistController extends Controller
 {
-    // Tampilkan Form Upload
-    public function showUploadForm()
+    // ==========================================================
+    // 1. BAGIAN PUBLIC (Bisa diakses siapa saja)
+    // ==========================================================
+    
+    public function index(Request $request)
     {
-        // Ambil role user dan ubah ke huruf kecil untuk perbandingan yang konsisten
-        $userRole = strtolower(Auth::user()->role);
-        // Cek apakah role user adalah 'psychologist' ATAU 'admin'
-        if ($userRole !== 'psychologist' && $userRole !== 'admin') {
-            // Jika TIDAK ADA satupun yang cocok, lakukan redirect
-            return redirect()->route('dashboard.customer')->with('status', 'Akses ditolak.')->with('type', 'error');
+        // Ambil kata kunci pencarian dari URL (?cari=...)
+        $keyword = $request->input('cari');
+
+        // Logic Pencarian
+        if ($keyword) {
+            $psychologists = Psychologist::where('name', 'LIKE', "%$keyword%")
+                            ->orWhere('specialist', 'LIKE', "%$keyword%")
+                            ->orWhere('role', 'LIKE', "%$keyword%")
+                            ->get();
+        } else {
+            // Kalau gak nyari, ambil semua data dari database
+            $psychologists = Psychologist::all();
         }
-        // Jika salah satu cocok, tampilkan view
-        return view('psychologist_upload');
+
+        // Kirim data ke View 'psychologist.blade.php'
+        // Pastikan nama view-nya sesuai dengan file kamu (misal: psychologist.blade.php)
+        return view('psychologist', compact('psychologists', 'keyword'));
     }
 
-    // Proses Upload (Pengganti if ($_SERVER['REQUEST_METHOD'] === 'POST'))
+
+    // ==========================================================
+    // 2. BAGIAN PRIVATE (Khusus Psikolog Login)
+    // ==========================================================
+
+    // Tampilkan Form Upload
+    // Tambahin ini di method showUploadForm
+    public function showUploadForm()
+    {
+        $userRole = strtolower(Auth::user()->role);
+        if ($userRole !== 'psychologist' && $userRole !== 'admin') {
+            return redirect()->route('dashboard.customer');
+        }
+
+        // CEK APAKAH UDAH PERNAH UPLOAD
+        $certificate = DB::table('psychologist_certificates')
+            ->where('psychologist_id', Auth::id())
+            ->first();
+
+        // Kirim data sertifikat ke view (bisa null kalau belum ada)
+        return view('psychologist_upload', compact('certificate'));
+    }
+
+    // Update method handleUpload (Otomatis Ganti File kalau udah ada)
     public function handleUpload(Request $request)
     {
-        // Validasi File (Max 10 MB, Tipe PDF)
         $request->validate([
-            'certificate' => 'required|file|mimes:pdf|max:10240', // Max 10MB
-        ], [
-            'certificate.required' => '⚠️ Anda wajib memilih file untuk diupload.',
-            'certificate.mimes' => '❌ Hanya file PDF yang diizinkan.',
-            'certificate.max' => '⚠️ Ukuran file maksimal adalah 10 MB.',
+            'certificate' => 'required|file|mimes:pdf|max:10240',
         ]);
 
         $file = $request->file('certificate');
         $userId = Auth::id();
         $fileNameOriginal = $file->getClientOriginalName();
-
-        // Buat nama unik: certificate_[user_id]_[timestamp].pdf
         $newFileName = 'certificate_' . $userId . '_' . time() . '.' . $file->extension();
-
-        // Tentukan folder penyimpanan (public/uploads/certificates)
         $uploadPath = public_path('uploads/certificates');
 
-        // Pastikan folder ada
         if (!File::isDirectory($uploadPath)) {
             File::makeDirectory($uploadPath, 0775, true, true);
         }
 
-        // Simpan File ke Server
+        // CEK DATA LAMA
+        $existingCert = DB::table('psychologist_certificates')->where('psychologist_id', $userId)->first();
+
         try {
+            // Pindahkan file BARU
             $file->move($uploadPath, $newFileName);
 
-            // Simpan data ke Database
-            DB::insert('
-                INSERT INTO psychologist_certificates (psychologist_id, certificate_name, certificate_path)
-                VALUES (?, ?, ?)
-            ', [$userId, $fileNameOriginal, $newFileName]);
+            if ($existingCert) {
+                // --- SKENARIO UPDATE (GANTI FILE) ---
+                
+                // 1. Hapus file LAMA dari folder (biar gak nyampah)
+                $oldFile = public_path('uploads/certificates/' . $existingCert->certificate_path);
+                if (File::exists($oldFile)) {
+                    File::delete($oldFile);
+                }
 
-            // Berhasil
-            return back()->with('status', '✅ Sertifikat berhasil diupload.')->with('type', 'success');
+                // 2. Update Database (Reset status jadi pending lagi)
+                DB::table('psychologist_certificates')
+                    ->where('psychologist_id', $userId)
+                    ->update([
+                        'certificate_name' => $fileNameOriginal,
+                        'certificate_path' => $newFileName,
+                        'uploaded_at' => now(), // Update waktu upload
+                        'status' => 'pending',  // Reset verifikasi
+                        'reject_reason' => null // Hapus alasan tolak
+                    ]);
+                
+                $msg = '✅ Sertifikat berhasil diperbarui! Mohon tunggu verifikasi ulang.';
+
+            } else {
+                // --- SKENARIO INSERT BARU ---
+                DB::insert('
+                    INSERT INTO psychologist_certificates (psychologist_id, certificate_name, certificate_path, status, uploaded_at)
+                    VALUES (?, ?, ?, ?, ?)
+                ', [$userId, $fileNameOriginal, $newFileName, 'pending', now()]);
+
+                $msg = '✅ Sertifikat berhasil diupload.';
+            }
+
+            return back()->with('status', $msg)->with('type', 'success');
+
         } catch (\Exception $e) {
-            // Gagal
-            return back()->with('status', '⚠️ Gagal menyimpan file ke server atau database.')->with('type', 'error');
+            return back()->with('status', '⚠️ Gagal menyimpan file.')->with('type', 'error');
         }
+    }
+
+    // TAMBAHAN: Method Delete
+    public function deleteCertificate()
+    {
+        $userId = Auth::id();
+        $cert = DB::table('psychologist_certificates')->where('psychologist_id', $userId)->first();
+
+        if ($cert) {
+            // 1. Hapus Fisik File
+            $filePath = public_path('uploads/certificates/' . $cert->certificate_path);
+            if (File::exists($filePath)) {
+                File::delete($filePath);
+            }
+
+            // 2. Hapus Data Database
+            DB::table('psychologist_certificates')->where('psychologist_id', $userId)->delete();
+
+            return back()->with('status', '🗑️ Sertifikat berhasil dihapus.')->with('type', 'success');
+        }
+
+        return back()->with('status', 'Data tidak ditemukan.')->with('type', 'error');
     }
 }

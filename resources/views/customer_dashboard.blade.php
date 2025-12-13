@@ -87,7 +87,7 @@
                                 <h6 class="fw-bold mb-1">Need Help?</h6>
                                 <p class="text-muted small mb-0">Book a psychologist now</p>
                             </div>
-                            <a href="{{ route('psychologist') }}" class="btn btn-primary rounded-pill btn-sm px-3">
+                            <a href="{{ route('psychologist.index') }}" class="btn btn-primary rounded-pill btn-sm px-3">
                                 Find Expert
                             </a>
                         </div>
@@ -108,5 +108,6 @@
     @include('footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="public/js/script.js"></script>
 </body>
 </html>

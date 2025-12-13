@@ -1,7 +1,7 @@
 <title>@yield('title', 'MentalUX - Konsultasi Kesehatan Mental Online')</title>
 <meta name="description" content="@yield('description', 'Layanan konsultasi kesehatan mental online.')">
 <meta name="keywords" content="@yield('keywords', 'kesehatan mental, psikolog online, konsultasi psikologi')">
-
+ 
 <?php
 // Pastikan session dimulai agar bisa membaca data user
 if (session_status() === PHP_SESSION_NONE) {
@@ -26,7 +26,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a class="nav-link text-dark" href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-primary fw-bold" href="{{ route('psychologist') }}">Psychologist</a>
+                    <a class="nav-link text-primary fw-bold" href="{{ route('psychologist.index') }}">Psychologist</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="{{ route('education') }}">Education</a>

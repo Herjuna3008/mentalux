@@ -116,7 +116,7 @@
                 <div class="position-relative z-1">
                     <h2 class="fw-bold mb-3">Butuh Bantuan Lebih Lanjut?</h2>
                     <p class="lead mb-4 opacity-75">Edukasi adalah langkah awal. Jika kamu merasa berat, psikolog kami siap mendengarkan.</p>
-                    <a href="{{ route('psychologist') }}" class="btn btn-light btn-lg text-primary fw-bold px-5 rounded-pill">Cari Psikolog Sekarang</a>
+                    <a href="{{ route('psychologist.index') }}" class="btn btn-light btn-lg text-primary fw-bold px-5 rounded-pill">Cari Psikolog Sekarang</a>
                 </div>
                 <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(255,255,255,0.1);"></div>
             </div>

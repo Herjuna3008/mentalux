@@ -7,11 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="{{ asset('js/verification.js') }}"></script>
     <link rel="icon" href="{{ asset('/logo.png') }}" type="image/x-icon">
 </head>
 <body class="bg-light">
 
-    <!-- Gunakan include Blade -->
     @include('navbar')
 
     <div class="container" style="margin-top: 120px;">
@@ -22,8 +22,8 @@
             </div>
             <div class="text-end">
                 <span class="badge bg-primary p-2">Admin Mode</span>
-                <!-- Gunakan helper auth() Laravel -->
-                <h5 class="mt-2 mb-0">{{ auth()->user()->username }}</h5>
+                
+                <h5 class="mt-2 mb-0">{{ auth()->user()->name ?? auth()->user()->username }}</h5>
             </div>
         </div>
 
@@ -36,11 +36,12 @@
                         </div>
                         <div>
                             <h6 class="text-muted mb-0">Total Users</h6>
-                            <h3 class="fw-bold mb-0">1,250</h3>
+                            <h3 class="fw-bold mb-0">{{ $totalUsers }}</h3>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm p-3 border-start border-4 border-success">
                     <div class="d-flex align-items-center">
@@ -49,11 +50,12 @@
                         </div>
                         <div>
                             <h6 class="text-muted mb-0">Psychologists</h6>
-                            <h3 class="fw-bold mb-0">45</h3>
+                            <h3 class="fw-bold mb-0">{{ $totalPsychologists }}</h3>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm p-3 border-start border-4 border-warning">
                     <div class="d-flex align-items-center">
@@ -62,7 +64,7 @@
                         </div>
                         <div>
                             <h6 class="text-muted mb-0">Total Sessions</h6>
-                            <h3 class="fw-bold mb-0">3,400</h3>
+                            <h3 class="fw-bold mb-0">{{ $totalSessions }}</h3>
                         </div>
                     </div>
                 </div>
@@ -76,7 +78,9 @@
                     <div class="card-body">
                         <h5 class="card-title fw-bold"><i class="fas fa-user-check me-2 text-primary"></i> Verify Psychologists</h5>
                         <p class="card-text text-muted small">Check new applications and approve licenses.</p>
+                        <a href="{{ route('admin.verifications') }}">
                         <button class="btn btn-outline-primary btn-sm">Manage Applications</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -92,7 +96,6 @@
         </div>
         
         <div class="mt-5 text-center">
-            <!-- Gunakan route() Laravel -->
             <a href="{{ route('logout') }}" class="text-danger text-decoration-none fw-bold">
                 <i class="fas fa-sign-out-alt"></i> Logout from Admin
             </a>
@@ -102,5 +105,6 @@
     @include('footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="public/js/script.js"></script>
 </body>
 </html>
