@@ -63,9 +63,11 @@
                                             <i class="fas fa-check"></i>
                                         </button>
                                     </form>
-                                    <form action="{{ route('admin.reject', $cert->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('admin.reject', $cert->id) }}" method="POST" class="d-inline form-reject">
                                         @csrf
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="konfirmasiTolak(this, '{{ $cert->psychologist_name }}')"><i class="fas fa-times"></i></button>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="konfirmasiTolak(this, '{{ $cert->psychologist_name }}')">
+                                            <i class="fas fa-times"></i>
+                                        </button>
                                     </form>
                                 @else
                                     <span class="text-muted small">Selesai</span>

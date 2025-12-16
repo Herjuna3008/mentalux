@@ -34,6 +34,6 @@ class DashboardController extends Controller
         ->first();
 
     // Kirim data ke View
-    return view('psychologist_dashboard', compact('user', 'appointments'));
+    return view('psychologist_dashboard', compact('user', 'appointments', 'verification'));
     }
 }

@@ -57,13 +57,20 @@ class AdminController extends Controller
     // 3. Proses Reject
     public function reject(Request $request, $id)
     {
+        $reason = $request->input('reason'); 
+
+        if (!$reason) {
+            $reason = 'Dokumen tidak memenuhi syarat verifikasi.';
+        }
+
+        // 3. Simpan ke Database
         DB::table('psychologist_certificates')
             ->where('id', $id)
             ->update([
                 'status' => 'rejected',
-                'reject_reason' => 'Dokumen tidak sesuai atau buram.' // Bisa dibikin dinamis kalo mau input form
+                'reject_reason' => $reason
             ]);
 
-        return back()->with('error', 'Sertifikat ditolak.');
+        return back()->with('success', 'Sertifikat ditolak dengan alasan: ' . $reason);
     }
 }

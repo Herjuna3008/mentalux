@@ -2,7 +2,7 @@
 // Ambil ID dari URL (contoh: article_detail.php?id=1)
 $id = $_GET['id'] ?? '1';
 
-// DATA DUMMY (Nanti ini bisa diganti ambil dari Database)
+// DATA DUMMY
 $articles = [
     '1' => [
         'title' => 'Mengatasi Burnout Kerja',
@@ -45,7 +45,7 @@ $articles = [
     ]
 ];
 
-// Cek apakah artikel ada? Kalau gak ada, default ke artikel 1
+// Cek apakah artikel ada?
 $data = $articles[$id] ?? $articles['1'];
 ?>
 
@@ -58,6 +58,7 @@ $data = $articles[$id] ?? $articles['1'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" href="{{ asset('/logo.png') }}" type="image/x-icon">
 </head>
 <body>
@@ -89,15 +90,81 @@ $data = $articles[$id] ?? $articles['1'];
 
                 <div class="d-flex align-items-center gap-3">
                     <span class="fw-bold text-dark">Share this article:</span>
-                    <button class="btn btn-outline-primary btn-sm rounded-circle"><i class="fab fa-whatsapp"></i></button>
-                    <button class="btn btn-outline-primary btn-sm rounded-circle"><i class="fab fa-twitter"></i></button>
-                    <button class="btn btn-outline-primary btn-sm rounded-circle"><i class="fas fa-link"></i></button>
+                    
+                    <button onclick="shareToWhatsApp()" class="btn btn-outline-success btn-sm rounded-circle" title="Share ke WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    
+                    <!-- <button onclick="shareToTwitter()" class="btn btn-outline-dark btn-sm rounded-circle" title="Share ke Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </button> -->
+                    
+                    <button onclick="copyLink()" class="btn btn-outline-primary btn-sm rounded-circle" title="Salin Link">
+                        <i class="fas fa-link"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     @include('footer')
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Ambil data Judul Artikel dari PHP ke variabel JS
+        const articleTitle = "<?php echo addslashes($data['title']); ?>";
+
+        // 1. Fungsi Share ke WhatsApp
+        function shareToWhatsApp() {
+            // Ambil URL halaman saat ini
+            const url = window.location.href;
+            const text = `Cek artikel menarik ini di MentalUX: *${articleTitle}*\n\nBaca selengkapnya disini: ${url}`;
+            
+            // Encode biar karakter spasi/simbol aman di URL
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            
+            // Buka di tab baru
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // // 2. Fungsi Share ke Twitter
+        // function shareToTwitter() {
+        //     const url = window.location.href;
+        //     const text = `Cek artikel: ${articleTitle} via @MentalUX`;
+            
+        //     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+            
+        //     window.open(twitterUrl, '_blank');
+        // }
+
+        // 3. Fungsi Copy Link (Pake SweetAlert biar keren)
+        function copyLink() {
+            const url = window.location.href;
+
+            // Perintah copy ke clipboard
+            navigator.clipboard.writeText(url).then(() => {
+                // Muncul notifikasi Toast (Kecil di pojok kanan atas)
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Link berhasil disalin!'
+                });
+            }).catch(err => {
+                console.error('Gagal menyalin link: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
