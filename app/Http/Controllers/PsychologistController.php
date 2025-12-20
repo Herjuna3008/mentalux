@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;   // Untuk Query Builder / Raw
 use Illuminate\Support\Facades\File; // Untuk File Handling
-use App\Models\Psychologist;         // <--- WAJIB TAMBAH INI (Panggil Model)
+use App\Models\Psychologist;
 
 class PsychologistController extends Controller
 {

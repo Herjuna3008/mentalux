@@ -10,7 +10,7 @@ use App\Models\User;
 class AuthController extends Controller
 {
     // =========================================
-    // 1. LOGIC LOGIN (FIXED ROLE CHECK)
+    // 1. LOGIC LOGIN
     // ==========================================
     public function login(Request $request)
     {
@@ -25,8 +25,6 @@ class AuthController extends Controller
             // Ambil role dari user yang login
             $role = Auth::user()->role; 
             
-            // KONVERSI KE HURUF KECIL BIAR GAK SALAH BACA
-            // Contoh: "Admin" jadi "admin", "Psychologist" jadi "psychologist"
             $checkRole = strtolower($role); 
             
             if ($checkRole === 'admin') {
@@ -40,7 +38,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password salah bro, coba lagi.',
+            'email' => 'Email atau password salah, coba lagi.',
         ])->onlyInput('email');
     }
 

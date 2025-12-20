@@ -135,7 +135,7 @@
         </div>
     </section>
 
-    <section class="social-sharing py-5 text-center">
+    <!-- <section class="social-sharing py-5 text-center">
         <div class="container">
             <p class="lead mb-4">
                 Help your friends find the support they need. Share MentalUX on your social networks.
@@ -148,7 +148,7 @@
             </div>
             <a href="#" class="btn btn-primary btn-lg rounded-pill">Subscribe to Newsletter</a>
         </div>
-    </section>
+    </section> -->
 
     @include('footer')
 

@@ -1,11 +1,11 @@
 <?php
 // SEARCH LOGIC
-$keyword = ""; 
-$tampil_data = $psychologists; 
+$keyword = "";
+$tampil_data = $psychologists;
 
 if (isset($_GET['cari']) && !empty($_GET['cari'])) {
     $keyword = $_GET['cari'];
-    $tampil_data = array_filter($psychologists, function ($item) use ($keyword) {
+    $tampil_data = $psychologists->filter(function ($item) use ($keyword) {
         return stripos($item['name'], $keyword) !== false ||
             stripos($item['specialist'], $keyword) !== false ||
             stripos($item['role'], $keyword) !== false;
@@ -62,7 +62,7 @@ if (isset($_GET['cari']) && !empty($_GET['cari'])) {
         <div class="container">
             <div class="row g-4">
 
-                @foreach ($psychologists as $psy)
+                @foreach ($tampil_data as $psy)
                     <div class="col-lg-4 col-md-6">
                         <div class="card card-psych h-100">
 
